@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+        <div class="input-field col s12">
+            <i class=" material-icons prefix">search</i>
+            <input #input (keyup.enter)="selectFilm(input.value)" type="number" id="searchFilm"
+                placeholder="Rechercher un film...">
+        </div>
+    </div>
+
+    <div class="row">
+        <p *ngIf="filmSelected">
+            Film sélectionné : {{filmSelected.title}}
+        </p>
+        <p *ngIf="!filmSelected">
+            Aucun film n'a été trouvé.
+        </p>
+    </div>
+</div>
+
+<!-- <div class="container">
+    <div class="row">
+        <div *ngFor="let vfilm of filmList" class="col s6 m4 l2">
+            <div class="card small">
+                <div class="card-image">
+                    <img [src]="vfilm.picture">
+                </div>
+                <div class="card-content">
+                    <h6>{{vfilm.title}}</h6>
+                    <p class="cardtext">
+                        {{vfilm.date}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+    <div class="row">
+        <div *ngFor="let vfilm of filmList" class="col m4 s6">
+            <div (click)="goToFilm(vfilm)" class="card horizontal" filmBorderCard="red">
+                <div class="card-image">
+                    <img [src]="vfilm.picture" />
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>{{vfilm.title}}</p>
+                        <p class="cardtext">{{vfilm.date | date:"dd/MM/yyyy"}}</p>
+                        <span *ngFor="let type of vfilm.type" class="{{type | movieGenreColor}}">
+                            {{type}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
