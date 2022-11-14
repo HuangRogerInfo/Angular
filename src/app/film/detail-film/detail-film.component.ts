@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Film } from '../film';
-import { FILMS } from '../mock-film-list';
+import { FilmService } from '../film.service';
 
 @Component({
   selector: 'app-detail-film',
@@ -14,14 +14,17 @@ export class DetailFilmComponent implements OnInit {
   filmList: Film[];
   film: Film | undefined;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private filmService: FilmService
+  ) { }
 
   ngOnInit(): void {
-    this.filmList = FILMS;
     const filmId: string | null = this.route.snapshot.paramMap.get('id');
 
     if (filmId) {
-      this.film = this.filmList.find(film => film.id == +filmId)
+      this.film = this.filmService.getFilmId(+filmId);
     }
   }
 

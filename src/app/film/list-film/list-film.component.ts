@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Film } from '../film';
+import { FilmService } from '../film.service';
 import { FILMS } from '../mock-film-list';
 
 @Component({
@@ -9,13 +10,17 @@ import { FILMS } from '../mock-film-list';
   styleUrls: ['./list-film.component.scss']
 })
 export class ListFilmComponent implements OnInit {
-  filmList: Film[] = FILMS;
+  filmList: Film[];
   filmSelected: Film | undefined;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private filmService: FilmService
+  ) { }
 
   ngOnInit(): void {
     console.table(this.filmList);
+    this.filmList = this.filmService.getFilmList();
   }
 
   //On crée une méthode qui va surgir après un évènement (+convertit string en nombre)
