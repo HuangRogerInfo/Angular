@@ -6,8 +6,12 @@ import { BorderCardDirective } from './border-card.directive';
 import { MovieGenreColorPipe } from './movie-genre-color.pipe';
 import { RouterModule, Routes } from '@angular/router';
 import { FilmService } from './film.service';
+import { FormsModule } from '@angular/forms';
+import { FilmFormComponent } from './film-form/film-form.component';
+import { EditFilmComponent } from './edit-film/edit-film.component';
 
 const filmRoutes: Routes = [
+  { path: 'edit/film/:id', component: EditFilmComponent },
   { path: 'films', component: ListFilmComponent },
   { path: 'film/:id', component: DetailFilmComponent }
 ];
@@ -17,10 +21,13 @@ const filmRoutes: Routes = [
     ListFilmComponent,
     DetailFilmComponent,
     BorderCardDirective,
-    MovieGenreColorPipe
+    MovieGenreColorPipe,
+    FilmFormComponent,
+    EditFilmComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(filmRoutes)
   ],
   providers: [FilmService]

@@ -1,0 +1,5 @@
+<h2 class="center">Editer {{film?.title}}</h2>>
+<p *ngIf="film" class="center">
+    <img [src]="film.picture">
+</p>
+<app-film-form *ngIf="film" [film]="film"></app-film-form>

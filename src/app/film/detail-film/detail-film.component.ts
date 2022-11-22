@@ -32,4 +32,8 @@ export class DetailFilmComponent implements OnInit {
     this.router.navigate(['/films']);
   }
 
+  goToEditFilm(film: Film) {
+    this.router.navigate(['/edit/film', film.id]);
+  }
+
 }
